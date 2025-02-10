@@ -1,2 +1,2 @@
-# Twitch TV - Stremio Addon
+# TwitchTV - Stremio Addon
 Addon to scrape Twitch videos.
