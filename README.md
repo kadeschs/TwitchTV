@@ -10,5 +10,5 @@ Addon to scrape Twitch videos.
 
 ⚠️ Render.com has a timer that puts the server on standby if not used, then slowing down the restart; use [Uptime Robot](https://uptimerobot.com/) to fix the problem.
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/kadeschs/FluxusTV)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/kadeschs/TwitchTV)
 
