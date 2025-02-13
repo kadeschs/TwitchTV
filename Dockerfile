@@ -30,6 +30,7 @@ USER puppeteeruser
 RUN apt-get update && apt-get install -y \
     wget \
     gnupg \
+    ca-certificates \
     libnss3 \
     libatk1.0-0 \
     libatk-bridge2.0-0 \
@@ -42,7 +43,8 @@ RUN apt-get update && apt-get install -y \
     libpango1.0-0 \
     libasound2 \
     libxshmfence1 \
-    libglu1-mesa
+    libglu1-mesa \
+    && echo "***** Dependencies installation complete! *****"
 
 # Add Google Chrome signing key and repository
 RUN echo "Adding Google Chrome signing key and repository" \
