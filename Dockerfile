@@ -1,25 +1,6 @@
 # Use a Node.js image as a base
 FROM node:16
 
-# Set the working directory
-WORKDIR /app
-
-# Copy the project files
-COPY package.json package-lock.json ./
-RUN npm install
-
-# Copy the rest of the code
-COPY . .
-
-# Expose port 10000 (used by the server)
-EXPOSE 10000
-
-# Launch the add-on
-CMD ["node", "server.js"]
-
-# Use a Node.js image as a base
-FROM node:16
-
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     libnss3 \
@@ -36,17 +17,18 @@ RUN apt-get update && apt-get install -y \
     libxshmfence1 \
     libglu1-mesa
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY package.json ./
+# Copy the project files and install dependencies
+COPY package.json package-lock.json ./
 RUN npm install
+RUN npx puppeteer browsers install chrome
 
-# Copy the rest of the application code
+# Copy the rest of the code
 COPY . .
 
-# Expose the port the app runs on
+# Expose port 10000 (used by the server)
 EXPOSE 10000
 
 # Start the application
