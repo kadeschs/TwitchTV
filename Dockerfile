@@ -1,5 +1,5 @@
-# Use a Node.js image as a base
-FROM node:16
+# Use a Node.js 20 image as a base
+FROM node:20
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
