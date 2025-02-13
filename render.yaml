@@ -1,16 +1,8 @@
-<<<<<<< HEAD
 services:
   - type: web
     name: TwitchTV
     runtime: docker  
     plan: free 
     region: Ohio
-=======
-services:
-  - type: web
-    name: TwitchTV
-    runtime: docker  
-    plan: free 
-    region: Ohio
->>>>>>> 97d00ae (Your commit message)
+    
     
