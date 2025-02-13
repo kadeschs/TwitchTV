@@ -32,6 +32,9 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 
+# Update npm to the latest version
+RUN npm install -g npm@latest
+
 # Change the ownership of the working directory to the new user
 RUN chown -R puppeteeruser:puppeteeruser /app
 
