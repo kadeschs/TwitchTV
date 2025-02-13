@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Configure {{manifestName}} Addon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e; /* Updated background color to match Stremio */
+            background-image: url('https://dl.strem.io/addon-background.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9); /* Slight transparency for better readability */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center; /* Center the contents */
+        }
+        .container img {
+            display: block;
+            margin: 0 auto 20px;
+            width: 100px; /* Adjust size as needed */
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 5px; /* Adjust margin */
+            color: #333;
+        }
+        h2.version {
+            font-size: 14px;
+            margin-bottom: 10px; /* Adjust margin */
+            color: #666;
+        }
+        h2.description {
+            font-size: 18px;
+            margin-bottom: 20px; /* Adjust margin */
+            color: #666;
+        }
+        .instructions {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        .separator {
+            height: 2px;
+            background-color: #ccc;
+            margin: 20px 0; /* Adjust margin */
+        }
+        form {
+            text-align: left; /* Left-justify the form */
+        }
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+        form input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        form button {
+            border: 0;
+            outline: 0;
+            color: white;
+            background: #8A5AAB;
+            padding: 1.2vh 3.5vh;
+            margin: auto;
+            text-align: center;
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 2.2vh;
+            font-weight: 600;
+            cursor: pointer;
+            display: block;
+            box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.1s ease-in-out;
+        }
+        form button:active {
+            box-shadow: 0 0 0 0.5vh white inset;
+        }
+        form button:hover {
+            background: #005ea0; /* Adjust hover color if needed */
+        }
+        .switch-message {
+            font-size: 16px;
+            margin-top: 20px;
+            color: #666;
+            display: none;
+        }
+    </style>
+    <script>
+        function showSwitchMessage() {
+            document.getElementById('switchMessage').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <img src="https://dl.strem.io/addon-logo.png" alt="Stremio Logo">
+        <h1>Configure {{manifestName}} Addon</h1>
+        <h2 class="version">Version {{manifestVersion}}</h2>
+        <h2 class="description">{{manifestDescription}}</h2>
+        <div class="separator"></div>
+        <p class="instructions">Please fill in the following fields to install {{manifestName}} addon.</p>
+        <div class="separator"></div>
+        <form method="POST" action="/addon/saveConfigure" onsubmit="showSwitchMessage()">
+            <label>First Username: <input type="text" name="username1" required></label>
+            <br>
+            <label>Second Username: <input type="text" name="username2"></label>
+            <br>
+            <button name="Install" type="submit">Install Now!</button>
+        </form>
+        <p id="switchMessage" class="switch-message">Switch back to Stremio.</p>
+    </div>
+</body>
+</html>

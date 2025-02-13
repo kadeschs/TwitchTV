@@ -1,0 +1,15 @@
+{
+    "id": "org.kadeschs.twitch",
+    "version": "1.0.0",
+    "name": "Twitch TV",
+    "description": "Addon to scrape Twitch videos",
+    "resources": ["catalog", "stream"],
+    "types": ["channel"],
+    "catalogs": [
+        {
+            "type": "channel",
+            "id": "twitch",
+            "name": "Twitch TV"
+        }
+    ]
+}
