@@ -3,6 +3,7 @@ const puppeteer = require('puppeteer');
 async function getTwitchVideoUrl(videoUrl) {
     const browser = await puppeteer.launch({
         headless: true,
+        executablePath: '/usr/bin/google-chrome', // THIS PATH LINE IS FOR DOCKER DEPLOYMENT ONLY.
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
