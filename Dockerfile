@@ -31,6 +31,9 @@ RUN useradd -m puppeteeruser
 # Set the environment variable for Node
 ENV NODE_ENV=production
 
+# Set the environment variable for Puppeteer cache directory
+ENV PUPPETEER_CACHE_DIR=/root/.cache/puppeteer
+
 # Set the working directory
 WORKDIR /app
 
