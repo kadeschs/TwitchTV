@@ -1,6 +1,31 @@
 # Use a Node.js image as a base
 FROM node:20
 
+# Set the environment variable for Node
+ENV NODE_ENV=production
+
+# Set the environment variable for Puppeteer cache directory
+ENV PUPPETEER_CACHE_DIR=/root/.cache/puppeteer
+
+# Create a non-root user
+RUN useradd -m puppeteeruser
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the project files and install dependencies
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Update npm to the latest version
+RUN npm install -g npm@latest
+
+# Change the ownership of the working directory to the new user
+RUN chown -R puppeteeruser:puppeteeruser /app
+
+# Switch to the non-root user
+USER puppeteeruser
+
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     wget \
@@ -26,35 +51,15 @@ RUN echo "Adding Google Chrome signing key and repository" \
     && apt-get update \
     && echo "********* Installing Google Chrome! *********" \
     && apt-get install -y google-chrome-stable \
-    && echo "***** Google Chrome installation complete! *****"
-
-# Create a non-root user
-RUN useradd -m puppeteeruser
-
-# Set the environment variable for Node
-ENV NODE_ENV=production
-
-# Set the working directory
-WORKDIR /app
-
-# Copy the project files and install dependencies
-COPY package.json package-lock.json ./
-RUN npm install
-
-# Update npm to the latest version
-RUN npm install -g npm@latest
-
-# Change the ownership of the working directory to the new user
-RUN chown -R puppeteeruser:puppeteeruser /app
-
-# Switch to the non-root user
-USER puppeteeruser
+    && echo "***** Google Chrome installation complete! *****" \
+    && echo "***** Chrome location: $(which google-chrome) *****" \
+    && echo "***** Puppeteer cache path: $PUPPETEER_CACHE_DIR *****"
 
 # Copy the rest of the code
 COPY . .
 
-# Expose port 10000 (used by the server)
-EXPOSE 10000
+# Expose port 7000 (used by the server)
+EXPOSE 7000
 
 # Start the application
 CMD ["node", "server.js"]
