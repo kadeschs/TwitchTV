@@ -16,7 +16,7 @@ EXPOSE 10000
 
 # Launch the add-on
 CMD ["node", "server.js"]
-=======
+
 # Use a Node.js image as a base
 FROM node:16
 
