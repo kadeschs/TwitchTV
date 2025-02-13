@@ -1,4 +1,4 @@
-# Use a Node.js 20 image as a base
+# Use a Node.js image as a base
 FROM node:20
 
 # Install dependencies
@@ -18,6 +18,15 @@ RUN apt-get update && apt-get install -y \
     libasound2 \
     libxshmfence1 \
     libglu1-mesa
+
+# Add Google Chrome signing key and repository
+RUN echo "Adding Google Chrome signing key and repository" \
+    && wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
+    && apt-get update \
+    && echo "Installing Google Chrome" \
+    && apt-get install -y google-chrome-stable \
+    && echo "Google Chrome installation complete"
 
 # Create a non-root user
 RUN useradd -m puppeteeruser
