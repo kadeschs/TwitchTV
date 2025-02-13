@@ -23,8 +23,8 @@ RUN npm install -g npm@latest
 # Change the ownership of the working directory to the new user
 RUN chown -R puppeteeruser:puppeteeruser /app
 
-# Switch to the non-root user
-USER puppeteeruser
+# Switch to the root user for installation steps
+USER root
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -56,6 +56,9 @@ RUN echo "Adding Google Chrome signing key and repository" \
     && echo "***** Google Chrome installation complete! *****" \
     && echo "***** Chrome location: $(which google-chrome) *****" \
     && echo "***** Puppeteer cache path: $PUPPETEER_CACHE_DIR *****"
+
+# Switch back to the non-root user
+USER puppeteeruser
 
 # Copy the rest of the code
 COPY . .
