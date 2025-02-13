@@ -51,4 +51,3 @@ EXPOSE 10000
 
 # Start the application
 CMD ["node", "server.js"]
->>>>>>> 97d00ae (Your commit message)
