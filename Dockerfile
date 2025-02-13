@@ -15,7 +15,11 @@ RUN apt-get update && apt-get install -y \
     libpango1.0-0 \
     libasound2 \
     libxshmfence1 \
-    libglu1-mesa
+    libglu1-mesa \
+    chromium-browser
+
+# Create a non-root user
+RUN useradd -m puppeteeruser
 
 # Set the environment variable for Node
 ENV NODE_ENV=production
@@ -27,6 +31,12 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 RUN npx puppeteer browsers install chrome
+
+# Change the ownership of the working directory to the new user
+RUN chown -R puppeteeruser:puppeteeruser /app
+
+# Switch to the non-root user
+USER puppeteeruser
 
 # Copy the rest of the code
 COPY . .
