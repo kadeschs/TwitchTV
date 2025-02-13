@@ -17,6 +17,9 @@ RUN apt-get update && apt-get install -y \
     libxshmfence1 \
     libglu1-mesa
 
+# Set the environment variable for Node
+ENV NODE_ENV=production
+
 # Set the working directory
 WORKDIR /app
 
