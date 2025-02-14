@@ -1,4 +1,14 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
+const path = '/usr/bin/google-chrome';
+
+fs.access(path, fs.constants.F_OK, (err) => {
+    if (err) {
+        console.error(`***** Chrome executable not found at: ${path} *****`);
+    } else {
+        console.log(`***** Chrome executable found at: ${path} *****`);
+    }
+});
 
 async function getTwitchVideoUrl(videoUrl) {
     const browser = await puppeteer.launch({
